@@ -1,4 +1,4 @@
-package comparison;
+package defaultValue;
 
 import model.Comparator;
 import model.Operand;
@@ -6,7 +6,10 @@ import model.Operand;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ComparisonDefaultFactory {
+public class ComparisonDefault {
+
+    private ComparisonDefault() {
+    }
 
     public static final Comparator EQUAL = new Comparator("=", Comparator.PRECEDENCE_ONE) {
         @Override
@@ -50,7 +53,7 @@ public class ComparisonDefaultFactory {
         }
     };
 
-    public List<Comparator> getDefaultComparisonOperator() {
+    public static List<Comparator> getDefaultComparisonOperator() {
         List<Comparator> comOperators = new ArrayList<>();
         comOperators.add(EQUAL);
         comOperators.add(GREATER);

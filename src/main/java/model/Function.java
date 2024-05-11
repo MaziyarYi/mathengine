@@ -14,7 +14,7 @@ public abstract class Function extends Section {
     }
 
     public Operand apply(Operand... operands) {
-        if(operands.length != parameters) {
+        if (operands.length != parameters) {
             throw new IllegalArgumentException(getSection() + " Function Only Accept " + parameters + " Operands As Parameter. "
                     + "(Parameter Passed: " + operands.length + ")");
         }

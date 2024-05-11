@@ -3,6 +3,7 @@ package comparison;
 import model.Comparator;
 import operation.Operation;
 import operation.OperationBuilder;
+import operation.OperationFactory;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,11 +22,14 @@ public class ComparisonBuilder {
     private Operation operation_right;
 
     private HashMap<String, Comparator> operators;
-    private ComparisonDefaultFactory defaultFactory = new ComparisonDefaultFactory();
+    private ComparisonFactory comparisonFactory;
+    private OperationFactory operationFactory;
 
-    public ComparisonBuilder(String comparison) {
+    public ComparisonBuilder(String comparison, ComparisonFactory comparisonFactory, OperationFactory operationFactory) {
         this.comparison = comparison;
         this.operators = new HashMap<>();
+        this.comparisonFactory = comparisonFactory;
+        this.operationFactory = operationFactory;
         addDefaultPack();
     }
 
@@ -39,7 +43,7 @@ public class ComparisonBuilder {
     }
 
     private void addDefaultPack() {
-        addComparisonOperator(defaultFactory.getDefaultComparisonOperator().toArray(new Comparator[defaultFactory.getDefaultComparisonOperator().size()]));
+        addComparisonOperator(comparisonFactory.getComparators().toArray(new Comparator[comparisonFactory.getComparators().size()]));
     }
 
     public ComparisonBuilder addComparisonOperator(Comparator... comparators) {
@@ -82,8 +86,8 @@ public class ComparisonBuilder {
                 if (operations.length != 2) {
                     throw new IllegalArgumentException("Comparisons Need To Have Two Operations. Found: " + operations.length);
                 } else {
-                    operation_left = new OperationBuilder(operations[0]).parse().build();
-                    operation_right = new OperationBuilder(operations[1]).parse().build();
+                    operation_left = new OperationBuilder(operations[0], operationFactory).parse().build();
+                    operation_right = new OperationBuilder(operations[1], operationFactory).parse().build();
                 }
             } else {
                 throw new IllegalArgumentException("Cannot Find A Comparison Operator In The Expression.");

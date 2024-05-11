@@ -1,11 +1,8 @@
 package model;
 
-import lombok.Getter;
-
 import java.util.Arrays;
 import java.util.List;
 
-@Getter
 public class Constant {
 
     private final List<String> keys;
@@ -18,6 +15,14 @@ public class Constant {
 
     public String getInitialKey() {
         return keys.get(0);
+    }
+
+    public List<String> getKeys() {
+        return keys;
+    }
+
+    public double getValue() {
+        return value;
     }
 
     @Override

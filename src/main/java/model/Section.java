@@ -1,8 +1,5 @@
 package model;
 
-import lombok.Getter;
-
-@Getter
 public class Section {
 
     private final String section;
@@ -16,6 +13,10 @@ public class Section {
         return "model.Section{" +
                 "section='" + section + '\'' +
                 '}';
+    }
+
+    public String getSection() {
+        return section;
     }
 
     @Override

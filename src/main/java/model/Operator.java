@@ -1,8 +1,5 @@
 package model;
 
-import lombok.Getter;
-
-@Getter
 public abstract class Operator extends Section {
 
     private final String name;
@@ -24,6 +21,46 @@ public abstract class Operator extends Section {
         this.arity = arity;
         this.precedence = precedence;
         this.leftAssociative = leftAssociative;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPrecedence() {
+        return precedence;
+    }
+
+    public int getArity() {
+        return arity;
+    }
+
+    public boolean isLeftAssociative() {
+        return leftAssociative;
+    }
+
+    public static int getPrecedenceAddition() {
+        return PRECEDENCE_ADDITION;
+    }
+
+    public static int getPrecedenceMultiplication() {
+        return PRECEDENCE_MULTIPLICATION;
+    }
+
+    public static int getPrecedencePower() {
+        return PRECEDENCE_POWER;
+    }
+
+    public static int getPrecedenceForce() {
+        return PRECEDENCE_FORCE;
+    }
+
+    public static int getArityUnary() {
+        return ARITY_UNARY;
+    }
+
+    public static int getArityBinary() {
+        return ARITY_BINARY;
     }
 
     public Operand apply(Operand... operands) {

@@ -1,5 +1,6 @@
 package operation;
 
+import defaultValue.OperationDefault;
 import model.*;
 import util.Util;
 
@@ -26,22 +27,23 @@ public class OperationBuilder {
     private String parenthesis_close = ")";
     private String argument_separator = ",";
 
-    private OperationDefaultFactory defaultFactory = new OperationDefaultFactory();
+    private OperationFactory operationFactory;
 
-    public OperationBuilder(String operation) {
+    public OperationBuilder(String operation, OperationFactory operationFactory) {
         this.operation = operation.toLowerCase();
         sections = new ArrayList<>();
         operatorStack = new Stack<>();
         operators = new HashMap<>();
         constants = new HashMap<>();
         functions = new HashMap<>();
+        this.operationFactory = operationFactory;
         addDefaultPack();
     }
 
     private void addDefaultPack() {
-        addOperator(defaultFactory.getDefaultOperator().toArray(new Operator[defaultFactory.getDefaultOperator().size()]));
-        addConstant(defaultFactory.getDefaultConstant().toArray(new Constant[defaultFactory.getDefaultConstant().size()]));
-        addFunction(defaultFactory.getDefaultFunction().toArray(new Function[defaultFactory.getDefaultFunction().size()]));
+        addOperator(operationFactory.getOperators().toArray(new Operator[operationFactory.getOperators().size()]));
+        addConstant(operationFactory.getConstants().toArray(new Constant[operationFactory.getConstants().size()]));
+        addFunction(operationFactory.getFunctions().toArray(new Function[operationFactory.getFunctions().size()]));
     }
 
     public OperationBuilder addOperator(Operator... operators) {
@@ -119,7 +121,7 @@ public class OperationBuilder {
             } else if (operators.containsKey(section)) {
                 Operator op = operators.get(section);
 
-                if (op.equals(OperationDefaultFactory.SUBTRACT)) {
+                if (op.equals(OperationDefault.SUBTRACT)) {
                     if (matcherIndex - 1 < 0 || (matcherIndex - 1 >= 0 && !Util.isNumber(String.valueOf(operation.charAt(matcherIndex - 1))))) {
                         isNegative = true;
                         continue;

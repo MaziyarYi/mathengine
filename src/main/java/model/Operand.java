@@ -1,10 +1,5 @@
 package model;
 
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
 public class Operand extends Section {
 
     private double number;
@@ -12,6 +7,15 @@ public class Operand extends Section {
     public Operand(double number) {
         super(number +"");
         this.number = number;
+    }
+
+    public double getNumber() {
+        return number;
+    }
+
+    public Operand setNumber(double number) {
+        this.number = number;
+        return this;
     }
 
     public boolean equals(Operand num) {
