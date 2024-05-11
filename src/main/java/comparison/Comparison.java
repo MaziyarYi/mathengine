@@ -1,5 +1,6 @@
 package comparison;
 
+import model.Comparator;
 import model.Operand;
 import operation.Operation;
 
@@ -20,7 +21,7 @@ public class Comparison {
 
     public boolean eval() {
         if (comparator == null) throw new IllegalArgumentException("Unknown Comparison Operator.");
-        return comparator.compare(new Operand(operation_right.eval()), new Operand(operation_left.eval()));
+        return comparator.compare(new Operand(operation_left.eval()), new Operand(operation_right.eval()));
     }
 
     public String getComparison() {

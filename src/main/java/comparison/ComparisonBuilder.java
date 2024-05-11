@@ -1,5 +1,6 @@
 package comparison;
 
+import model.Comparator;
 import operation.Operation;
 import operation.OperationBuilder;
 

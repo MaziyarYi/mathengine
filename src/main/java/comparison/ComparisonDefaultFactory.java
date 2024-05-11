@@ -1,5 +1,6 @@
 package comparison;
 
+import model.Comparator;
 import model.Operand;
 
 import java.util.ArrayList;

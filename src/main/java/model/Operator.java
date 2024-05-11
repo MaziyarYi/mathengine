@@ -1,8 +1,6 @@
-package operation;
+package model;
 
 import lombok.Getter;
-import model.Operand;
-import model.Section;
 
 @Getter
 public abstract class Operator extends Section {

@@ -2,6 +2,7 @@ package operation;
 
 import model.Function;
 import model.Operand;
+import model.Operator;
 import model.Section;
 
 import java.util.*;

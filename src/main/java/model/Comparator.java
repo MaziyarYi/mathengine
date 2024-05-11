@@ -1,8 +1,6 @@
-package comparison;
+package model;
 
 import lombok.Getter;
-import model.Operand;
-import model.Section;
 
 @Getter
 public abstract class Comparator extends Section {

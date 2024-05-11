@@ -1,9 +1,6 @@
 package operation;
 
-import model.Constant;
-import model.Function;
-import model.Operand;
-import model.Section;
+import model.*;
 import util.Util;
 
 import java.util.ArrayList;
