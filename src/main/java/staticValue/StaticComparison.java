@@ -1,4 +1,4 @@
-package defaultValue;
+package staticValue;
 
 import model.Comparator;
 import model.Operand;
@@ -6,9 +6,9 @@ import model.Operand;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ComparisonDefault {
+public class StaticComparison {
 
-    private ComparisonDefault() {
+    private StaticComparison() {
     }
 
     public static final Comparator EQUAL = new Comparator("=", Comparator.PRECEDENCE_ONE) {
@@ -53,15 +53,41 @@ public class ComparisonDefault {
         }
     };
 
-    public static List<Comparator> getDefaultComparisonOperator() {
-        List<Comparator> comOperators = new ArrayList<>();
-        comOperators.add(EQUAL);
-        comOperators.add(GREATER);
-        comOperators.add(GREATER_EQ);
-        comOperators.add(LESS);
-        comOperators.add(LESS_EQ);
-        comOperators.add(UNEQUAL);
-        return comOperators;
+    public static final Comparator AND = new Comparator("&&", Comparator.PRECEDENCE_TWO) {
+        @Override
+        public boolean compare(Operand o1, Operand o2) {
+            return false; //TODO
+        }
+    };
+
+    public static final Comparator OR = new Comparator("||", Comparator.PRECEDENCE_TWO) {
+        @Override
+        public boolean compare(Operand o1, Operand o2) {
+            return false; //TODO
+        }
+    };
+
+    public static List<Comparator> getClassicComparison(){
+        List<Comparator> classicComparison = new ArrayList<>();
+        classicComparison.add(EQUAL);
+        classicComparison.add(GREATER);
+        classicComparison.add(GREATER_EQ);
+        classicComparison.add(LESS);
+        classicComparison.add(LESS_EQ);
+        return classicComparison;
+    }
+
+    public static List<Comparator> getPremiumComparison () {
+        List<Comparator> premiumComparison = new ArrayList<>();
+        premiumComparison.add(EQUAL);
+        premiumComparison.add(GREATER);
+        premiumComparison.add(GREATER_EQ);
+        premiumComparison.add(LESS);
+        premiumComparison.add(LESS_EQ);
+        premiumComparison.add(UNEQUAL);
+        premiumComparison.add(AND);
+        premiumComparison.add(OR);
+        return premiumComparison;
     }
 
 }

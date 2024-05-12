@@ -1,44 +1,54 @@
+import Rule.MathRule;
 import comparison.ComparisonBuilder;
-import comparison.ComparisonFactory;
-import defaultValue.ComparisonDefault;
-import defaultValue.ConstantDefault;
-import defaultValue.FunctionDefault;
-import defaultValue.OperationDefault;
-import model.Comparator;
-import model.Constant;
-import model.Function;
-import model.Operator;
 import operation.OperationBuilder;
-import operation.OperationFactory;
+import org.jeasy.rules.api.Facts;
+import org.jeasy.rules.api.Rules;
+import org.jeasy.rules.core.DefaultRulesEngine;
+import util.Factories;
 
-import java.util.List;
+import java.util.*;
 
 public class MathEngine {
 
-    private OperationFactory operationFactory;
-    private ComparisonFactory comparisonFactory;
+    private List<MathRule> rules = new ArrayList<>();
 
     public MathEngine() {
     }
 
-    public MathEngine setDefaultStructure() {
-        this.operationFactory = new OperationFactory(OperationDefault.getDefaultOperator(), ConstantDefault.getDefaultConstant(), FunctionDefault.getDefaultFunction());
-        this.comparisonFactory = new ComparisonFactory(ComparisonDefault.getDefaultComparisonOperator());
+    public MathEngine setMathRule(List<MathRule> rules){
+        if (Objects.isNull(rules))
+            throw new RuntimeException("Must Define Rule");
+        this.rules = rules;
         return this;
     }
 
-    public MathEngine setStructure(List<Operator> operators, List<Constant> constants, List<Function> functions, List<Comparator> comparators) {
-        this.operationFactory = new OperationFactory(operators, constants, functions);
-        this.comparisonFactory = new ComparisonFactory(comparators);
+    public MathEngine setMathRule(MathRule rule){
+        if (Objects.isNull(rule))
+            throw new RuntimeException("Must Define Rule");
+        this.rules.add(rule);
         return this;
+    }
+
+    public void initMathEngineRules(){
+        if (Objects.isNull(rules))
+            throw new RuntimeException("No Rules Are Defined");
+        Rules rules = new Rules();
+        for (MathRule rule: this.rules) {
+            rules.register(rule);
+        }
+        new DefaultRulesEngine().fire(rules, new Facts());
     }
 
     public Double evalOperation(String operation) {
-        return new OperationBuilder(operation, operationFactory).parse().build().eval();
+        if(Objects.isNull(Factories.getInstance().getOperationFactory()) || Objects.isNull(Factories.getInstance().getComparisonFactory()))
+            initMathEngineRules();
+        return new OperationBuilder(operation, Factories.getInstance().getOperationFactory()).parse().build().eval();
     }
 
     public Boolean evalComparison(String comparison) {
-        return new ComparisonBuilder(comparison, comparisonFactory, operationFactory).parse().build().eval();
+        if(Objects.isNull(Factories.getInstance().getOperationFactory()) || Objects.isNull(Factories.getInstance().getComparisonFactory()))
+            initMathEngineRules();
+        return new ComparisonBuilder(comparison, Factories.getInstance().getComparisonFactory(), Factories.getInstance().getOperationFactory()).parse().build().eval();
     }
 
 }

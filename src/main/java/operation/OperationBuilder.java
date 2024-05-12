@@ -1,6 +1,6 @@
 package operation;
 
-import defaultValue.OperationDefault;
+import staticValue.StaticOperation;
 import model.*;
 import util.Util;
 
@@ -121,7 +121,7 @@ public class OperationBuilder {
             } else if (operators.containsKey(section)) {
                 Operator op = operators.get(section);
 
-                if (op.equals(OperationDefault.SUBTRACT)) {
+                if (op.equals(StaticOperation.SUBTRACT)) {
                     if (matcherIndex - 1 < 0 || (matcherIndex - 1 >= 0 && !Util.isNumber(String.valueOf(operation.charAt(matcherIndex - 1))))) {
                         isNegative = true;
                         continue;

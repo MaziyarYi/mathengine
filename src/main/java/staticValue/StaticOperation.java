@@ -1,4 +1,4 @@
-package defaultValue;
+package staticValue;
 
 import model.Operand;
 import model.Operator;
@@ -6,9 +6,9 @@ import model.Operator;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OperationDefault {
+public class StaticOperation {
 
-    private OperationDefault() {
+    private StaticOperation() {
     }
 
     public static final Operator ADD = new Operator("+", "add", Operator.ARITY_BINARY, Operator.PRECEDENCE_ADDITION, true) {
@@ -75,15 +75,25 @@ public class OperationDefault {
         }
     };
 
-    public static List<Operator> getDefaultOperator() {
-        List<Operator> operators = new ArrayList<>();
-        operators.add(ADD);
-        operators.add(SUBTRACT);
-        operators.add(MULTIPLY);
-        operators.add(DIVIDE);
-        operators.add(MOD);
-        operators.add(POWER);
-        operators.add(FACTORIAL);
-        return operators;
+    public static List<Operator> getClassicOperator() {
+        List<Operator> classicOperators = new ArrayList<>();
+        classicOperators.add(ADD);
+        classicOperators.add(SUBTRACT);
+        classicOperators.add(MULTIPLY);
+        classicOperators.add(DIVIDE);
+        classicOperators.add(MOD);
+        return classicOperators;
+    }
+
+    public static List<Operator> getPremiumOperator() {
+        List<Operator> premiumOperators = new ArrayList<>();
+        premiumOperators.add(ADD);
+        premiumOperators.add(SUBTRACT);
+        premiumOperators.add(MULTIPLY);
+        premiumOperators.add(DIVIDE);
+        premiumOperators.add(MOD);
+        premiumOperators.add(POWER);
+        premiumOperators.add(FACTORIAL);
+        return premiumOperators;
     }
 }
