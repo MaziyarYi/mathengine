@@ -7,7 +7,7 @@ import java.text.NumberFormat;
 public class Util {
 
     public static double truncate(Double d, Integer tc) {
-        var nf = NumberFormat.getNumberInstance();
+        NumberFormat nf = NumberFormat.getNumberInstance();
         nf.setMaximumFractionDigits(tc);
         nf.setRoundingMode(RoundingMode.DOWN);
         return Double.parseDouble(nf.format(d));
