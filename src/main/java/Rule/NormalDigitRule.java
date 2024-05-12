@@ -4,8 +4,8 @@ import org.jeasy.rules.annotation.Action;
 import org.jeasy.rules.annotation.Condition;
 import org.jeasy.rules.annotation.Rule;
 
-@Rule(name = "Min Digit Rule", description = "Using Float For Minimum Digit In Operations")
-public class MinDigitRule extends MathRule<Class> {
+@Rule(name = "Normal Digit Rule", description = "Using Double For Normal Digit In Operations")
+public class NormalDigitRule extends MathRule<Class>{
 
     @Override
     @Condition
@@ -16,7 +16,7 @@ public class MinDigitRule extends MathRule<Class> {
     @Override
     @Action
     public void then() {
-        result = Float.class;
+        result = Double.class;
     }
 
     @Override
@@ -28,4 +28,5 @@ public class MinDigitRule extends MathRule<Class> {
     public Class getResult() {
         return super.getResult();
     }
+
 }

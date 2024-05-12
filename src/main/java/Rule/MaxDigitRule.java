@@ -4,8 +4,10 @@ import org.jeasy.rules.annotation.Action;
 import org.jeasy.rules.annotation.Condition;
 import org.jeasy.rules.annotation.Rule;
 
-@Rule(name = "Min Digit Rule", description = "Using Maximum Digit In Operations")
-public class MaxDigitRule extends MathRule<Integer>{
+import java.math.BigDecimal;
+
+@Rule(name = "Min Digit Rule", description = "Using BigDecimal Maximum Digit In Operations")
+public class MaxDigitRule extends MathRule<Class>{
 
     @Override
     @Condition
@@ -16,7 +18,7 @@ public class MaxDigitRule extends MathRule<Integer>{
     @Override
     @Action
     public void then() {
-        result = 8;
+        result = BigDecimal.class;
     }
 
     @Override
@@ -25,7 +27,7 @@ public class MaxDigitRule extends MathRule<Integer>{
     }
 
     @Override
-    public Integer getResult() {
+    public Class getResult() {
         return super.getResult();
     }
 
