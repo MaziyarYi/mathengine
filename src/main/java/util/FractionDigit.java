@@ -22,6 +22,7 @@ public class FractionDigit {
         NumberFormat nf = NumberFormat.getNumberInstance();
         nf.setMaximumFractionDigits(fractionDigit);
         nf.setRoundingMode(RoundingMode.DOWN);
+        nf.setGroupingUsed(false);
         return Double.parseDouble(nf.format(d));
     }
 

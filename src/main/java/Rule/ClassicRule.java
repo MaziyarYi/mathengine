@@ -25,7 +25,6 @@ public class ClassicRule {
 
     @Action
     public void then() {
-        System.out.println("Running Classic Rule");
         FractionDigit.getInstance().setFractionDigit(fractionDigit);
         Factories.getInstance().setOperationFactory( new OperationFactory().initClassicOperation());
         Factories.getInstance().setComparisonFactory(new ComparisonFactory().initClassicComparison());
