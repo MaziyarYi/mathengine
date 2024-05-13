@@ -6,27 +6,34 @@ import org.jeasy.rules.annotation.Action;
 import org.jeasy.rules.annotation.Condition;
 import org.jeasy.rules.annotation.Rule;
 import util.Factories;
+import util.FractionDigit;
 
 @Rule(name = "Classic Rule", description = "Using All Classic Operations")
-public class ClassicRule extends MathRule {
+public class ClassicRule {
 
-    @Override
+    private boolean executed;
+    private Integer fractionDigit;
+
+    public ClassicRule(Integer fractionDigit) {
+        this.fractionDigit = fractionDigit;
+    }
+
     @Condition
     public boolean when() {
         return true;
     }
 
-    @Override
     @Action
     public void then() {
+        System.out.println("Running Classic Rule");
+        FractionDigit.getInstance().setFractionDigit(fractionDigit);
         Factories.getInstance().setOperationFactory( new OperationFactory().initClassicOperation());
         Factories.getInstance().setComparisonFactory(new ComparisonFactory().initClassicComparison());
         executed = true;
     }
 
-    @Override
     public boolean isExecuted() {
-        return super.isExecuted();
+        return executed;
     }
 
 }

@@ -53,20 +53,6 @@ public class StaticComparison {
         }
     };
 
-    public static final Comparator AND = new Comparator("&&", Comparator.PRECEDENCE_TWO) {
-        @Override
-        public boolean compare(Operand o1, Operand o2) {
-            return false; //TODO
-        }
-    };
-
-    public static final Comparator OR = new Comparator("||", Comparator.PRECEDENCE_TWO) {
-        @Override
-        public boolean compare(Operand o1, Operand o2) {
-            return false; //TODO
-        }
-    };
-
     public static List<Comparator> getClassicComparison(){
         List<Comparator> classicComparison = new ArrayList<>();
         classicComparison.add(EQUAL);
@@ -85,8 +71,6 @@ public class StaticComparison {
         premiumComparison.add(LESS);
         premiumComparison.add(LESS_EQ);
         premiumComparison.add(UNEQUAL);
-        premiumComparison.add(AND);
-        premiumComparison.add(OR);
         return premiumComparison;
     }
 

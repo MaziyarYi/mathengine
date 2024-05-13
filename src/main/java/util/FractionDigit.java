@@ -6,7 +6,7 @@ import java.text.NumberFormat;
 public class FractionDigit {
 
     private static FractionDigit instance;
-    private int fractionDigit;
+    private Integer fractionDigit;
 
     private FractionDigit() {
     }
@@ -25,12 +25,11 @@ public class FractionDigit {
         return Double.parseDouble(nf.format(d));
     }
 
-    public int getFractionDigit() {
+    public Integer getFractionDigit() {
         return fractionDigit;
     }
 
-    public FractionDigit setFractionDigit(int fractionDigit) {
+    public void setFractionDigit(Integer fractionDigit) {
         this.fractionDigit = fractionDigit;
-        return this;
     }
 }

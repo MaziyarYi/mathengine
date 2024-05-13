@@ -6,27 +6,34 @@ import org.jeasy.rules.annotation.Action;
 import org.jeasy.rules.annotation.Condition;
 import org.jeasy.rules.annotation.Rule;
 import util.Factories;
+import util.FractionDigit;
 
 @Rule(name = "Premium Rule", description = "Using All Premium Operations")
-public class PremiumRule extends MathRule {
+public class PremiumRule {
 
-    @Override
+    private boolean executed;
+    private Integer fractionDigit;
+
+    public PremiumRule(Integer fractionDigit) {
+        this.fractionDigit = fractionDigit;
+    }
+
     @Condition
     public boolean when() {
         return true;
     }
 
-    @Override
     @Action
     public void then() {
+        System.out.println("Running Premium Rule");
+        FractionDigit.getInstance().setFractionDigit(fractionDigit);
         Factories.getInstance().setOperationFactory( new OperationFactory().initPremiumOperation());
         Factories.getInstance().setComparisonFactory(new ComparisonFactory().initPremiumComparison());
         executed = true;
     }
 
-    @Override
     public boolean isExecuted() {
-        return super.isExecuted();
+        return executed;
     }
 }
 

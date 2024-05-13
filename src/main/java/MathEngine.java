@@ -1,6 +1,4 @@
 import Rule.ClassicRule;
-import Rule.FractionDigitRule;
-import Rule.MathRule;
 import Rule.PremiumRule;
 import comparison.ComparisonBuilder;
 import operation.OperationBuilder;
@@ -10,37 +8,32 @@ import org.jeasy.rules.core.DefaultRulesEngine;
 import util.Factories;
 import util.FractionDigit;
 
+import java.rmi.UnexpectedException;
 import java.util.*;
 
 public class MathEngine {
 
-    private List<MathRule> rules = new ArrayList<>();
+    private Object rule;
 
     public MathEngine() {
     }
 
-    public MathEngine setMathRules(List<MathRule> rules) {
-        if (Objects.isNull(rules)) throw new RuntimeException("Must Define Rule");
-        this.rules = rules;
-        return this;
-    }
-
-    public MathEngine setMathRule(MathRule rule) {
-        if (Objects.isNull(rule)) throw new RuntimeException("Must Define Rule");
-        this.rules.add(rule);
+    public MathEngine setMathRule(Object rule) {
+        if (Objects.isNull(rule)) throw new UnsupportedOperationException("Must Define Rule");
+        this.rule = rule;
         return this;
     }
 
     public void initMathEngineRules() {
-        if (Objects.isNull(rules)) throw new RuntimeException("No Rules Or Facts Are Defined");
-        Rules rul = new Rules();
-        if ((this.rules.stream().anyMatch(r -> r instanceof ClassicRule) || this.rules.stream().anyMatch(r -> r instanceof PremiumRule)) && this.rules.stream().anyMatch(r -> r instanceof FractionDigitRule)) {
-            for (MathRule rule : this.rules) {
-                rul.register(rule);
-            }
+        if (Objects.isNull(rule))
+            throw new UnsupportedOperationException("No Rule Is Defined");
+
+        if (rule instanceof ClassicRule || rule instanceof PremiumRule) {
+            Rules rul = new Rules();
+            rul.register(rule);
             new DefaultRulesEngine().fire(rul, new Facts());
         } else {
-            throw new RuntimeException("Must Define A Premium Rule Or Classic Rule And A Fraction Digit Rule");
+            throw new UnsupportedOperationException("Define Unexpected Rule");
         }
     }
 
