@@ -53,7 +53,7 @@ public class StaticComparison {
         }
     };
 
-    public static List<Comparator> getClassicComparison(){
+    public static List<Comparator> getClassicComparison() {
         List<Comparator> classicComparison = new ArrayList<>();
         classicComparison.add(EQUAL);
         classicComparison.add(GREATER);
@@ -63,7 +63,7 @@ public class StaticComparison {
         return classicComparison;
     }
 
-    public static List<Comparator> getPremiumComparison () {
+    public static List<Comparator> getPremiumComparison() {
         List<Comparator> premiumComparison = new ArrayList<>();
         premiumComparison.add(EQUAL);
         premiumComparison.add(GREATER);

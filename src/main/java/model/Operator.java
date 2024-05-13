@@ -64,7 +64,7 @@ public abstract class Operator extends Section {
     }
 
     public Operand apply(Operand... operands) {
-        if(operands.length != arity) {
+        if (operands.length != arity) {
             throw new IllegalArgumentException(name + " Operator Only Accept " + arity + " Operands As Parameter. "
                     + "(Parameter Passed: " + operands.length + ")");
         }

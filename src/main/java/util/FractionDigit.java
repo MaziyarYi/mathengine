@@ -11,7 +11,7 @@ public class FractionDigit {
     private FractionDigit() {
     }
 
-    public static FractionDigit getInstance(){
+    public static FractionDigit getInstance() {
         if (instance == null) {
             instance = new FractionDigit();
         }

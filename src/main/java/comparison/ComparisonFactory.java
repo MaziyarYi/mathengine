@@ -12,12 +12,12 @@ public class ComparisonFactory {
     public ComparisonFactory() {
     }
 
-    public ComparisonFactory initClassicComparison(){
+    public ComparisonFactory initClassicComparison() {
         this.comparators = StaticComparison.getClassicComparison();
         return this;
     }
 
-    public ComparisonFactory initPremiumComparison(){
+    public ComparisonFactory initPremiumComparison() {
         this.comparators = StaticComparison.getPremiumComparison();
         return this;
     }

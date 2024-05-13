@@ -28,11 +28,11 @@ public class Operation {
     }
 
     public double eval() {
-        while(!sections.isEmpty()) {
+        while (!sections.isEmpty()) {
             Section sec = sections.peek();
-            if(sec instanceof Operand) {
+            if (sec instanceof Operand) {
                 operands.push((Operand) sections.poll());
-            } else if(sec instanceof Operator) {
+            } else if (sec instanceof Operator) {
                 Operator op = (Operator) sec;
                 List<Operand> opArgs = new ArrayList<>();
                 for (int i = 0; i < op.getArity(); i++) {
@@ -40,7 +40,7 @@ public class Operation {
                 }
                 operands.push(op.apply(opArgs.toArray(new Operand[opArgs.size()])));
                 sections.remove();
-            } else if(sec instanceof Function) {
+            } else if (sec instanceof Function) {
                 Function func = (Function) sec;
 
                 List<Operand> funcArgs = new ArrayList<>();
@@ -51,7 +51,7 @@ public class Operation {
                 operands.push(func.apply(funcArgs.toArray(new Operand[funcArgs.size()])));
                 sections.remove();
             }
-            if(operands.size() == 1 && sections.isEmpty()) {
+            if (operands.size() == 1 && sections.isEmpty()) {
                 return operands.pop().getNumber();
             }
         }

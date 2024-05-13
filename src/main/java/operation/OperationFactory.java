@@ -19,14 +19,14 @@ public class OperationFactory {
     public OperationFactory() {
     }
 
-    public OperationFactory initClassicOperation(){
+    public OperationFactory initClassicOperation() {
         this.operators = StaticOperation.getClassicOperator();
         this.constants = StaticConstant.getClassicConstant();
         this.functions = StaticFunction.getClassicFunction();
         return this;
     }
 
-    public OperationFactory initPremiumOperation(){
+    public OperationFactory initPremiumOperation() {
         this.operators = StaticOperation.getPremiumOperator();
         this.constants = StaticConstant.getPremiumConstant();
         this.functions = StaticFunction.getPremiumFunction();

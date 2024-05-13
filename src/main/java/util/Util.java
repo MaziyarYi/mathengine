@@ -1,12 +1,10 @@
 package util;
 
 import java.math.BigInteger;
-import java.math.RoundingMode;
-import java.text.NumberFormat;
 
 public class Util {
 
-    public static boolean isNumber(String number){
+    public static boolean isNumber(String number) {
         try {
             Double.parseDouble(number);
         } catch (NumberFormatException nfe) {

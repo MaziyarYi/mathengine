@@ -26,7 +26,7 @@ public class PremiumRule {
     @Action
     public void then() {
         FractionDigit.getInstance().setFractionDigit(fractionDigit);
-        Factories.getInstance().setOperationFactory( new OperationFactory().initPremiumOperation());
+        Factories.getInstance().setOperationFactory(new OperationFactory().initPremiumOperation());
         Factories.getInstance().setComparisonFactory(new ComparisonFactory().initPremiumComparison());
         executed = true;
     }

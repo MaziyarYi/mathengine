@@ -5,7 +5,7 @@ public class Operand extends Section {
     private double number;
 
     public Operand(double number) {
-        super(number +"");
+        super(number + "");
         this.number = number;
     }
 
