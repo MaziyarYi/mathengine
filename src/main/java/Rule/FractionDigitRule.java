@@ -3,9 +3,14 @@ package Rule;
 import org.jeasy.rules.annotation.Action;
 import org.jeasy.rules.annotation.Condition;
 import org.jeasy.rules.annotation.Rule;
+import util.FractionDigit;
 
-@Rule(name = "Min Digit Rule", description = "Using Float For Minimum Digit In Operations")
-public class MinDigitRule extends MathRule<Class> {
+@Rule(name = "Fraction Digit Rule", description = "Using Specific Fraction Digit In Operations")
+public class FractionDigitRule extends MathRule<Integer> {
+
+    public FractionDigitRule(Integer digit) {
+        this.result = digit;
+    }
 
     @Override
     @Condition
@@ -16,7 +21,8 @@ public class MinDigitRule extends MathRule<Class> {
     @Override
     @Action
     public void then() {
-        result = Float.class;
+        FractionDigit.getInstance().setFractionDigit(result);
+        executed = true;
     }
 
     @Override
@@ -25,7 +31,8 @@ public class MinDigitRule extends MathRule<Class> {
     }
 
     @Override
-    public Class getResult() {
+    public Integer getResult() {
         return super.getResult();
     }
+
 }

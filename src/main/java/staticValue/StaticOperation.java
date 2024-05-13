@@ -2,6 +2,7 @@ package staticValue;
 
 import model.Operand;
 import model.Operator;
+import util.FractionDigit;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,21 +15,21 @@ public class StaticOperation {
     public static final Operator ADD = new Operator("+", "add", Operator.ARITY_BINARY, Operator.PRECEDENCE_ADDITION, true) {
         @Override
         public Operand operate(Operand... operands) {
-            return new Operand(operands[0].getNumber() + operands[1].getNumber());
+            return new Operand(FractionDigit.getInstance().truncate(operands[0].getNumber() + operands[1].getNumber()));
         }
     };
 
     public static final Operator SUBTRACT = new Operator("-", "subtract", Operator.ARITY_BINARY, Operator.PRECEDENCE_ADDITION, true) {
         @Override
         public Operand operate(Operand... operands) {
-            return new Operand(operands[0].getNumber() - operands[1].getNumber());
+            return new Operand(FractionDigit.getInstance().truncate(operands[0].getNumber() - operands[1].getNumber()));
         }
     };
 
     public static final Operator MULTIPLY = new Operator("*", "multiply", Operator.ARITY_BINARY, Operator.PRECEDENCE_MULTIPLICATION, true) {
         @Override
         public Operand operate(Operand... operands) {
-            return new Operand(operands[0].getNumber() * operands[1].getNumber());
+            return new Operand(FractionDigit.getInstance().truncate(operands[0].getNumber() * operands[1].getNumber()));
         }
     };
 
@@ -37,7 +38,7 @@ public class StaticOperation {
         public Operand operate(Operand... operands) {
             if (operands[1].getNumber() == 0)
                 throw new ArithmeticException("Division By 0.");
-            return new Operand(operands[0].getNumber() / operands[1].getNumber());
+            return new Operand(FractionDigit.getInstance().truncate(operands[0].getNumber() / operands[1].getNumber()));
         }
     };
 
@@ -48,7 +49,7 @@ public class StaticOperation {
                 throw new ArithmeticException("Division (Mod) By 0.");
 
             double number = 1;
-            number = operands[0].getNumber() % operands[1].getNumber();
+            number = FractionDigit.getInstance().truncate(operands[0].getNumber() % operands[1].getNumber());
             return new Operand(number);
         }
     };
@@ -56,7 +57,7 @@ public class StaticOperation {
     public static final Operator POWER = new Operator("^", "power", Operator.ARITY_BINARY, Operator.PRECEDENCE_POWER, false) {
         @Override
         public Operand operate(Operand... operands) {
-            return new Operand(Math.pow(operands[0].getNumber(), operands[1].getNumber()));
+            return new Operand(FractionDigit.getInstance().truncate(Math.pow(operands[0].getNumber(), operands[1].getNumber())));
         }
     };
 

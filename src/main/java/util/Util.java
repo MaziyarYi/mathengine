@@ -6,13 +6,6 @@ import java.text.NumberFormat;
 
 public class Util {
 
-    public static double truncate(Double d, Integer tc) {
-        NumberFormat nf = NumberFormat.getNumberInstance();
-        nf.setMaximumFractionDigits(tc);
-        nf.setRoundingMode(RoundingMode.DOWN);
-        return Double.parseDouble(nf.format(d));
-    }
-
     public static boolean isNumber(String number){
         try {
             Double.parseDouble(number);

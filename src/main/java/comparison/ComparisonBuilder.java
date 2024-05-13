@@ -4,6 +4,7 @@ import model.Comparator;
 import operation.Operation;
 import operation.OperationBuilder;
 import operation.OperationFactory;
+import util.Factories;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -25,11 +26,11 @@ public class ComparisonBuilder {
     private ComparisonFactory comparisonFactory;
     private OperationFactory operationFactory;
 
-    public ComparisonBuilder(String comparison, ComparisonFactory comparisonFactory, OperationFactory operationFactory) {
+    public ComparisonBuilder(String comparison) {
         this.comparison = comparison;
         this.operators = new HashMap<>();
-        this.comparisonFactory = comparisonFactory;
-        this.operationFactory = operationFactory;
+        this.comparisonFactory = Factories.getInstance().getComparisonFactory();
+        this.operationFactory = Factories.getInstance().getOperationFactory();
         addDefaultPack();
     }
 
@@ -86,8 +87,8 @@ public class ComparisonBuilder {
                 if (operations.length != 2) {
                     throw new IllegalArgumentException("Comparisons Need To Have Two Operations. Found: " + operations.length);
                 } else {
-                    operation_left = new OperationBuilder(operations[0], operationFactory).parse().build();
-                    operation_right = new OperationBuilder(operations[1], operationFactory).parse().build();
+                    operation_left = new OperationBuilder(operations[0]).parse().build();
+                    operation_right = new OperationBuilder(operations[1]).parse().build();
                 }
             } else {
                 throw new IllegalArgumentException("Cannot Find A Comparison Operator In The Expression.");

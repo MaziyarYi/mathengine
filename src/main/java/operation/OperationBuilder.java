@@ -2,6 +2,7 @@ package operation;
 
 import staticValue.StaticOperation;
 import model.*;
+import util.Factories;
 import util.Util;
 
 import java.util.ArrayList;
@@ -29,14 +30,14 @@ public class OperationBuilder {
 
     private OperationFactory operationFactory;
 
-    public OperationBuilder(String operation, OperationFactory operationFactory) {
+    public OperationBuilder(String operation) {
         this.operation = operation.toLowerCase();
         sections = new ArrayList<>();
         operatorStack = new Stack<>();
         operators = new HashMap<>();
         constants = new HashMap<>();
         functions = new HashMap<>();
-        this.operationFactory = operationFactory;
+        this.operationFactory = Factories.getInstance().getOperationFactory();
         addDefaultPack();
     }
 
